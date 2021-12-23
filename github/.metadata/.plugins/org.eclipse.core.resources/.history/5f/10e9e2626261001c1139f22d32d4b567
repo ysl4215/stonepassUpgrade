@@ -1,0 +1,27 @@
+package com.swempire.web.condition;
+
+public class Curl2 {
+	
+	public static void main(String[] args) {
+		StringBuilder sb = new StringBuilder();
+		
+		processBuilder = new ProcessBuilder("cmd.exe", "/y", "/c", command);
+		
+		try {
+			String osName = System.getProperty("os.name");
+			
+			String dataBody;
+			String command;
+			
+			
+			
+		}
+	}
+	
+	
+	
+	
+	
+
+	
+}

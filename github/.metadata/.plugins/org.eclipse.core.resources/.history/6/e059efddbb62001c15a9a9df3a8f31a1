@@ -1,0 +1,11 @@
+package com.swempire.web.condition.service;
+
+public class CurlServiceImpl implements CurlService{
+
+	@Override
+	public void curlShoot() throws Exception {
+		
+		
+	}
+
+}

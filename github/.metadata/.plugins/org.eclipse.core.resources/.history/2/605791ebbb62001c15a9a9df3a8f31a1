@@ -1,0 +1,10 @@
+package com.swempire.web.condition.service;
+
+import org.springframework.stereotype.Service;
+
+
+public interface CurlService {
+	
+	public void curlShoot() throws Exception;
+	
+}

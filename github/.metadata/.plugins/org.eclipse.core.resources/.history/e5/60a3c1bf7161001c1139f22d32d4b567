@@ -1,0 +1,31 @@
+package com.swempire.web.condition.DAO;
+
+public interface ConditionDAO {
+	
+	public List<BoardVO> getBoardList() throws Exception;
+
+	
+
+	public BoardVO getBoardContent(int bid) throws Exception;
+
+	
+
+	public int insertBoard(BoardVO boardVO) throws Exception;
+
+	
+
+	public int updateBoard(ConditionVO boardVO) throws Exception;
+
+	
+
+	public int deleteBoard(int bid) throws Exception;
+
+	
+
+	public int updateViewCnt(int bid) throws Exception;
+
+
+
+	
+	
+}

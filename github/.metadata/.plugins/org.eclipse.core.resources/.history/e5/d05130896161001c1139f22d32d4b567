@@ -1,0 +1,9 @@
+package com.swempire.web.condition;
+
+public class Curl2 {
+	
+	StringBuilder sBuilder = new StringBuilder;
+	
+	builder = new ProcessBuilder("cmd.exe", "/y", "/c", command);
+	
+}

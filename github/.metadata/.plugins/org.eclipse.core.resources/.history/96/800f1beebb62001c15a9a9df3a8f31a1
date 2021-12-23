@@ -1,0 +1,18 @@
+package com.swempire.web.condition.service;
+
+import javax.inject.Inject;
+
+import com.swempire.web.condition.DAO.CurlDAO;
+
+public class CurlServiceImpl implements CurlService{
+
+	@Inject
+	CurlDAO curldao;
+	
+	@Override
+	public void curlShoot() throws Exception {
+		
+		
+	}
+
+}

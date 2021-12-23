@@ -1,0 +1,6 @@
+package com.swempire.web.condition.service;
+
+@Service
+public class ConditionServiceImpl {
+
+}

@@ -1,0 +1,7 @@
+package com.swempire.web.condition.VO;
+
+public class ConditionVO {
+
+	String orga_name;
+
+}
