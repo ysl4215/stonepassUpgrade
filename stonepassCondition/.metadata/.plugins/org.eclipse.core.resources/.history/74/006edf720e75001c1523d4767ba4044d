@@ -1,0 +1,4 @@
+.monitor{
+width:500px;	
+text-align: right;
+}

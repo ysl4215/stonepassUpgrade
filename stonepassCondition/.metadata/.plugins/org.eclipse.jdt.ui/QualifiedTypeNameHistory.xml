@@ -1,9 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="java.io.InputStreamReader"/>
-    <fullyQualifiedTypeName name="org.slf4j.Logger"/>
-    <fullyQualifiedTypeName name="org.junit.Test"/>
-    <fullyQualifiedTypeName name="org.junit.runner.RunWith"/>
     <fullyQualifiedTypeName name="org.springframework.test.context.ContextConfiguration"/>
     <fullyQualifiedTypeName name="org.springframework.test.context.junit4.SpringJUnit4ClassRunner"/>
     <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
@@ -11,7 +7,6 @@
     <fullyQualifiedTypeName name="com.swempire.web.condition.DAO.CurlDAO"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestMethod"/>
     <fullyQualifiedTypeName name="java.net.MalformedURLException"/>
-    <fullyQualifiedTypeName name="com.swempire.web.condition.service.CurlService"/>
     <fullyQualifiedTypeName name="java.lang.Integer"/>
     <fullyQualifiedTypeName name="java.util.HashMap"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RestController"/>
@@ -28,7 +23,6 @@
     <fullyQualifiedTypeName name="com.google.protobuf.Message"/>
     <fullyQualifiedTypeName name="com.mysql.cj.Session"/>
     <fullyQualifiedTypeName name="com.swempire.web.condition.service.EmailService"/>
-    <fullyQualifiedTypeName name="com.swempire.web.comm.util.SendMailUtil"/>
     <fullyQualifiedTypeName name="java.util.Arrays"/>
     <fullyQualifiedTypeName name="org.springframework.scheduling.annotation.Scheduled"/>
     <fullyQualifiedTypeName name="com.swempire.web.condition.service.ConditionService"/>
@@ -47,17 +41,23 @@
     <fullyQualifiedTypeName name="org.springframework.scheduling.Trigger"/>
     <fullyQualifiedTypeName name="org.springframework.stereotype.Component"/>
     <fullyQualifiedTypeName name="org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler"/>
-    <fullyQualifiedTypeName name="com.swempire.web.comm.util.Scheduler"/>
-    <fullyQualifiedTypeName name="com.swempire.web.condition.VO.EmailVO"/>
     <fullyQualifiedTypeName name="com.swempire.web.condition.Curl"/>
     <fullyQualifiedTypeName name="com.swempire.web.comm.util.Curl2"/>
     <fullyQualifiedTypeName name="com.swempire.web.condition.controller.RestConditionController"/>
     <fullyQualifiedTypeName name="com.swempire.web.condition.VO.ServiceTestVO"/>
-    <fullyQualifiedTypeName name="javax.inject.Inject"/>
     <fullyQualifiedTypeName name="com.swempire.web.condition.DAO.EmailDAO"/>
     <fullyQualifiedTypeName name="java.lang.Exception"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestParam"/>
     <fullyQualifiedTypeName name="java.lang.Object"/>
     <fullyQualifiedTypeName name="com.swempire.web.condition.VO.EmailPaginationVO"/>
     <fullyQualifiedTypeName name="java.lang.Math"/>
+    <fullyQualifiedTypeName name="com.swempire.web.condition.VO.ConditionPaginationVO"/>
+    <fullyQualifiedTypeName name="com.swempire.web.comm.util.SendMailUtil"/>
+    <fullyQualifiedTypeName name="com.swempire.web.condition.VO.ServerCurlVO"/>
+    <fullyQualifiedTypeName name="javax.inject.Inject"/>
+    <fullyQualifiedTypeName name="com.swempire.web.condition.service.CurlService"/>
+    <fullyQualifiedTypeName name="java.lang.Runnable"/>
+    <fullyQualifiedTypeName name="com.swempire.web.comm.util.Scheduler"/>
+    <fullyQualifiedTypeName name="com.swempire.web.condition.controller.CurlRestController"/>
+    <fullyQualifiedTypeName name="com.swempire.web.condition.VO.EmailVO"/>
 </qualifiedTypeNameHistroy>

@@ -16,8 +16,8 @@ public class EmailServiceImpl implements EmailService{
 	EmailDAO emaildao;
 
 	@Override
-	public List<EmailVO> emailListSelect(EmailPaginationVO pagination) throws Exception {
-		return emaildao.emailListSelect(pagination);
+	public List<EmailVO> emailListSelect() throws Exception {
+		return emaildao.emailListSelect();
 	}
 	@Override
 	public List<EmailVO> emailListLimitSelect(EmailPaginationVO pagination) throws Exception {

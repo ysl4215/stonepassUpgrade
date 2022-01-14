@@ -1,5 +1,5 @@
 $(document).ready(function() {
-$('#loading').hide();
+	$('#loading').hide();
 });
 
 // condition.jsp
@@ -15,7 +15,7 @@ function insert() {
 	window.open(popUrl, "기관 등록", popOption);
 }
 
-function modify(bid) { 
+function modify(bid) {
 	var url = "/condition/content";
 	url = url + "?bid=" + bid;
 	let popUrl = url
@@ -35,12 +35,12 @@ function openPopup() {
 function kdw(kdwthis) {
 	var bid = kdwthis.value
 	var checked = 0;
-	
-	if (kdwthis.checked) {		
-		checked = 1;		
-		 $('#loading').show();
-	} else {		
-		checked = 0;		
+
+	if (kdwthis.checked) {
+		checked = 1;
+		$('#loading').show();
+	} else {
+		checked = 0;
 	}
 	$.ajax({
 		url: "conditionCurl",
@@ -52,13 +52,13 @@ function kdw(kdwthis) {
 		success: function(result) {
 			console.log(bid)
 			$("#condition" + bid).html(result);
-		/*	hideLoading();*/
+			/*	hideLoading();*/
 			$('#loading').hide();
 		},
 		error: function() {
 			alert("error");
 		}
-	});	
+	});
 }
 
 //CURL 전체연결 버튼
@@ -66,16 +66,16 @@ function checkall() {
 	// 2. #checkAll이 체크되었을 때,
 	// chk라는 name을 가진 input태그를 찾아 checked를 true로 정의
 	if ($("#checkAll").prop("checked")) {
-		 $('#loading').show();
-		timerId = setTimeout(checkall, 60000);
+		$('#loading').show();
+		/*timerId = setTimeout(checkall, 5000);*/
 		$("input[name=checkBoxId]").prop("checked", true)
 
 		var chkbox = $(".chkselect");
-		var chkall = document.getElementById('checkAll');
+		/*var chkall = document.getElementById('checkAll');*/
 
 		for (i = 0; i < chkbox.length; i++) {
 			chkbox[i].checked = checkAll.checked;
-		}	
+		}
 		//버튼 활성화시 Chk()로 이동
 		Chk();
 		// 3. #checkAll이 체크되지 않았을 때,
@@ -143,9 +143,9 @@ function Chk() {
 		dataType: "JSON",
 		traditional: true, //필수
 		data: {
-		bidArray: bidArray,
-		values: values
-	},
+			bidArray: bidArray,
+			values: values
+		},
 		success: function(result) {
 			for (var i = 0; i < bidArray.length; i++) {
 				$("#condition" + bidArray[i]).html(result[i]);
@@ -160,6 +160,129 @@ function Chk() {
 	});
 }
 
+//이전 버튼 이벤트
+function fn_prev(page, range, rangeSize) {
+	var page = ((range - 2) * rangeSize) + 1;
+	var range = range - 1;
+	var url = "/condition";
+	url = url + "?page=" + page;
+	url = url + "&range=" + range;
+	location.href = url;
+}
+
+//페이지 번호 클릭
+function fn_pagination(page, range, rangeSize, searchType, keyword) {
+	var url = "/condition";
+	url = url + "?page=" + page;
+	url = url + "&range=" + range;
+	location.href = url;
+}
+
+//다음 버튼 이벤트
+function fn_next(page, range, rangeSize) {
+	var page = parseInt((range * rangeSize)) + 1;
+	var range = parseInt(range) + 1;
+	var url = "/condition";
+	url = url + "?page=" + page;
+	url = url + "&range=" + range;
+	alert(url)
+	location.href = url;
+}
+
 /* 로딩화면 */
 //$('#loading').show();
 //$('#loading').hide();
+
+//서버버튼 클릭
+
+function serverCurl(e) {
+	const btnCurl = document.getElementById('serverCurl');
+	
+	if ($("#serverCurl").prop("checked")) {
+		/*btnCurl.value = "연결취소"*/
+		timerId = setTimeout(serverCurl, 10000);
+		var connection = "y";
+	
+		$.ajax({
+			url: "serverCurl",
+			type: 'post',
+			/*dataType: "JSON",*/
+			data: {
+				connection: connection
+			},
+			success: function(result) {
+				alert(result)
+			},
+			error: function() {
+				
+			}
+		});
+
+
+	} else {
+		/*btnCurl.value = "서버연결"*/
+		var connection = "n";
+
+		$.ajax({
+			url: "serverCurl",
+			type: 'post',
+			/*dataType: "JSON",*/
+			data: {
+				connection: connection
+			},
+			success: function(result) {
+			},
+			error: function() {
+				alert("error");
+			}
+		});
+
+	}
+
+}
+
+function serverCurldfd() {
+	const btnCurl = document.getElementById('serverCurl');
+	
+	if (btnCurl.value === "서버연결") {
+		/*btnCurl.value = "연결취소"*/
+		/*timerId = setTimeout(checkall, 5000);*/
+		var connection = "n";
+
+		$.ajax({
+			url: "serverCurl",
+			type: 'post',
+			/*dataType: "JSON",*/
+			data: {
+				connection: connection
+			},
+			success: function(result) {
+				alert(result)
+			},
+			error: function() {
+				alert("error");
+			}
+		});
+
+
+	} else {
+		btnCurl.value = "서버연결"
+		var connection = "n";
+
+		$.ajax({
+			url: "serverCurl",
+			type: 'post',
+			/*dataType: "JSON",*/
+			data: {
+				connection: connection
+			},
+			success: function(result) {
+			},
+			error: function() {
+				alert("error");
+			}
+		});
+
+	}
+}
+

@@ -1,0 +1,9 @@
+article{
+	width:100%;
+	border: 1px solid #000;
+}
+
+.monitor{
+width:500px;	
+text-align: right;
+}

@@ -6,7 +6,7 @@ import com.swempire.web.condition.VO.EmailPaginationVO;
 import com.swempire.web.condition.VO.EmailVO;
 
 public interface EmailDAO {
-	public List<EmailVO> emailListSelect(EmailPaginationVO pagination) throws Exception;
+	public List<EmailVO> emailListSelect() throws Exception;
 	
 	public List<EmailVO> emailListLimitSelect(EmailPaginationVO pagination) throws Exception;
 	

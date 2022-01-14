@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.swempire.web.condition.conditionMapper">
+	<update id="serverCurlConnection" parameterType="com.swempire.web.condition.VO.ConditionVO">
+		INSERT INTO condition_board (orga_name, orga_url) VALUES (#{orga_name}, #{orga_url})
+	</update>
+</mapper>

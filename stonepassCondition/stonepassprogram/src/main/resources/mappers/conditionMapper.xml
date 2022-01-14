@@ -8,6 +8,14 @@
 		resultType="com.swempire.web.condition.VO.ConditionVO">
 		SELECT * FROM condition_board
 	</select>
+	
+	<select id="conditionListLimitSelect" resultType="com.swempire.web.condition.VO.ConditionVO">
+		select * from condition_board LIMIT #{startList}, #{listSize}
+	</select>
+
+	<select id="conditionListCnt" resultType="int">
+		SELECT count(*) as listCnt FROM condition_board
+	</select>
 
 	<insert id="insertBoard" parameterType="com.swempire.web.condition.VO.ConditionVO">
 		INSERT INTO condition_board (orga_name, orga_url) VALUES (#{orga_name}, #{orga_url})

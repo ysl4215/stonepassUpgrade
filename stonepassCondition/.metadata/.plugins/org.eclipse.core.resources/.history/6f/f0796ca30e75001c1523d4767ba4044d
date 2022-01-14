@@ -1,0 +1,16 @@
+article {
+	width: 100%;
+	border: 1px solid #000;
+}
+
+.container {
+	width: 70%;
+	float: left;
+	box-sizing: border-box;
+	background: #ff0;
+}
+
+.monitor {
+	width: 500px;
+	text-align: right;
+}

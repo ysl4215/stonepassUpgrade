@@ -5,11 +5,12 @@ import java.util.List;
 import com.swempire.web.condition.VO.ConditionVO;
 import com.swempire.web.condition.VO.EmailPaginationVO;
 import com.swempire.web.condition.VO.EmailVO;
+import com.swempire.web.condition.VO.ServerCurlVO;
 import com.swempire.web.condition.VO.ServiceTestVO;
 
 public interface CurlService {
 	
-	public void curlShoot() throws Exception;
+	
 	
 	public ConditionVO orgaSelect(ConditionVO conditionvo) throws Exception;
 	
@@ -17,5 +18,8 @@ public interface CurlService {
 			EmailVO emailvo,EmailPaginationVO pagination) throws Exception;
 
 	public String[] getArr();
+	
+	public int serverCurlConnection(ServerCurlVO servercurlvo)throws Exception;
+	public ServerCurlVO serverCurlConnectionYN()throws Exception;
 	
 }

@@ -6,7 +6,6 @@ import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
-
 import com.swempire.web.condition.VO.EmailPaginationVO;
 import com.swempire.web.condition.VO.EmailVO;
 
@@ -16,8 +15,8 @@ public class EmailDAOImpl implements EmailDAO{
 	private SqlSession sqlSession;
 	
 	@Override
-	public List<EmailVO> emailListSelect(EmailPaginationVO pagination) throws Exception {	
-		return sqlSession.selectList("com.swempire.web.condition.emailMapper.emailListSelect", pagination);
+	public List<EmailVO> emailListSelect() throws Exception {	
+		return sqlSession.selectList("com.swempire.web.condition.emailMapper.emailListSelect");
 	}
 	
 	@Override

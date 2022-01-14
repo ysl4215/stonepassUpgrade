@@ -1,0 +1,13 @@
+package com.swempire.web.condition.VO;
+
+public class ServerCurlVO {
+	private String connetion;
+
+	public String getConnetion() {
+		return connetion;
+	}
+
+	public void setConnetion(String connetion) {
+		this.connetion = connetion;
+	}
+}

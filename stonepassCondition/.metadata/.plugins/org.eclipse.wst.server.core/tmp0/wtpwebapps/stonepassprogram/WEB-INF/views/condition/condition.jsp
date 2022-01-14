@@ -10,8 +10,9 @@
 <meta charset="UTF-8">
 
 <!-- common CSS -->
+<link rel="stylesheet" href="/resources/common/css/common.css">
 <link rel="stylesheet"
-	href="/resources/common/css/common.css">
+	href="/resources/common/css/condition/monitor.css">
 <%-- <link rel="stylesheet"
 	href="<c:url value='/resources/common/css/common.css'/>"> --%>
 
@@ -40,39 +41,14 @@ body {
 </head>
 
 <body>
-<nav class="navbar navbar-dark bg-dark">
-  <a class="navbar-brand" href="#">스톤패스 연결확인 프로그램</a>
+	<nav class="navbar navbar-dark bg-dark">
+		<a class="navbar-brand" href="#">스톤패스 연결확인 프로그램</a>
+	</nav>
 
-
-  <div class="navbar-collapse collapse" id="navbarsExample01" style="">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link disabled" href="#">Disabled</a>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
-        <div class="dropdown-menu" aria-labelledby="dropdown01">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <a class="dropdown-item" href="#">Something else here</a>
-        </div>
-      </li>
-    </ul>
-    <form class="form-inline my-2 my-md-0">
-      <input class="form-control" type="text" placeholder="Search" aria-label="Search">
-    </form>
-  </div>
-</nav>
-
-	<article>
-	<br><br>
-		<div class="container">
+	<article class="all">
+		<br> <br>
+		<!-- class="board" -->
+		<div class="board">
 			<div>
 				<button type="button" class="btn btn-sm btn-primary"
 					onclick="insert()">기관 등록</button>
@@ -81,26 +57,22 @@ body {
 					onclick="email()">E-mail</button>
 			</div>
 
-			<br>
-			<div>
-				<label class="switch-button"> <input value=""
-					type="checkbox" id="checkAll" name="checkall" onchange="checkall()" /> <span
-					class="onoff-switch"></span>
-				</label> <input type="hidden" id="result" name="result">
-			</div>
-			
-		<!-- 	<div class="spinner-border" role="status" id="roadingStatus" style="display: none;">
-				<span class="sr-only">Loading...</span>
-			</div>
-			<div class="spinner-border" role="status" id="roadingStatusall" style="display: none;">
-				<span class="sr-only">Loading...</span>
-			</div> -->
+			<br> <!-- <span> <input value="서버연결" type="button"
+				onclick="serverCurl()" id="serverCurl"
+				name="serverCurl">
+			</span> -->
+			<span> <input value="서버연결" type="checkbox"
+				onchange="serverCurl(this)" id="serverCurl"
+				name="serverCurl">
+			</span> 
+
+
 			<!--로딩바-->
-<div id="loading" style="margin-left: 0px;">
-    <img src="/resources/common/img/loading.gif">
-    <p>연결중입니다..잠시기다려주세요.</p>
-</div>
-			
+			<div id="loading" style="margin-left: 0px;">
+				<img src="/resources/common/img/loading.gif">
+				<p>연결중입니다..잠시기다려주세요.</p>
+			</div>
+
 			<div class="table-responsive">
 				<table class="table table-striped table-sm">
 					<colgroup>
@@ -116,21 +88,28 @@ body {
 							<th>NO</th>
 							<th>기관이름</th>
 							<th>기관주소</th>
-							<th>CURL</th>
-							<th style="text-align:center">연결상태</th>
+							<th>
+								<div>
+									<label class="switch-button"> <input value=""
+										type="checkbox" id="checkAll" name="checkall"
+										onchange="checkall()" /> <span class="onoff-switch"></span>
+									</label> <input type="hidden" id="result" name="result">
+								</div> CURL
+							</th>
+							<th style="text-align: center">연결상태</th>
 						</tr>
 					</thead>
 
 					<tbody>
 						<c:choose>
-							<c:when test="${empty boardList }">
+							<c:when test="${empty conditionlist }">
 								<tr>
 									<td colspan="5" align="center">데이터가 없습니다.</td>
 								</tr>
 							</c:when>
 
-							<c:when test="${!empty boardList}">
-								<c:forEach var="list" items="${boardList}">
+							<c:when test="${!empty conditionlist}">
+								<c:forEach var="list" items="${conditionlist}">
 									<tr>
 										<td><c:out value="${list.bid}" /></td>
 										<td><c:out value="${list.orga_name}" /></td>
@@ -144,7 +123,7 @@ body {
 												class="onoff-switch"></span>
 										</label></td>
 										<td>
-											<div id="condition${list.bid}" style="text-align:center" ></div>
+											<div id="condition${list.bid}" style="text-align: center"></div>
 										</td>
 									</tr>
 								</c:forEach>
@@ -152,6 +131,92 @@ body {
 						</c:choose>
 					</tbody>
 				</table>
+
+				<!-- pagination{s} -->
+				<div id="paginationBox">
+					<ul class="pagination">
+						<c:if test="${pagination.prev}">
+							<li class="page-item"><a class="page-link" href="#"
+								onClick="fn_prev('${pagination.page}', '${pagination.range}', '${pagination.rangeSize}')">
+									Previous</a></li>
+						</c:if>
+
+						<c:forEach begin="${pagination.startPage}"
+							end="${pagination.endPage}" var="idx">
+							<li
+								class="page-item <c:out value="${pagination.page == idx ? 'active' : ''}"/> ">
+								<a class="page-link" href="#"
+								onClick="fn_pagination('${idx}', '${pagination.range}', '${pagination.rangeSize}')">
+									${idx} </a>
+							</li>
+						</c:forEach>
+						<c:if test="${pagination.next}">
+							<li class="page-item"><a class="page-link" href="#"
+								onClick="fn_next('${pagination.range}', 
+				'${pagination.range}', '${pagination.rangeSize}')">Next</a></li>
+						</c:if>
+					</ul>
+					<!-- pagination{e} -->
+				</div>
+			</div>
+		</div>
+
+
+
+		<div class="monitor">
+			<div class="col-md-12">
+				<div class="card-shadow-primary profile-responsive card-border mb-3 card">
+					<div class="dropdown-menu-header">
+						<div class="dropdown-menu-header-inner bg-danger">
+							<div>
+								<h5 class="menu-header-title">CURL 접속불량 LIST</h5>
+							</div>
+						</div>
+					</div>
+					<ul class="list-group list-group-flush">
+						<li class="list-group-item">
+							<div class="widget-content p-0">
+								<div class="widget-content-wrapper">
+									<div class="widget-content-left">
+										<div class="widget-heading">January Sales</div>
+									</div>
+								</div>
+							</div>
+						</li>
+						<li class="list-group-item">
+							<div class="widget-content p-0">
+								<div class="widget-content-wrapper">
+									
+									<div class="widget-content-left">
+										<div class="widget-heading">February Sales</div>
+									</div>
+								</div>
+							</div>
+						</li>
+						<li class="list-group-item">
+							<div class="widget-content p-0">
+								<div class="widget-content-wrapper">
+									
+									<div class="widget-content-left">
+										<div class="widget-heading">March Sales</div>
+									</div>
+
+								</div>
+							</div>
+						</li>
+						<li class="list-group-item">
+							<div class="widget-content p-0">
+								<div class="widget-content-wrapper">
+									
+									<div class="widget-content-left">
+										<div class="widget-heading">April Sales</div>
+									</div>
+
+								</div>
+							</div>
+						</li>
+					</ul>
+				</div>
 			</div>
 		</div>
 	</article>

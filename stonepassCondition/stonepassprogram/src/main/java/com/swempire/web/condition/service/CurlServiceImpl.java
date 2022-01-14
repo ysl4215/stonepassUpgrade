@@ -13,22 +13,18 @@ import com.swempire.web.condition.DAO.EmailDAO;
 import com.swempire.web.condition.VO.ConditionVO;
 import com.swempire.web.condition.VO.EmailPaginationVO;
 import com.swempire.web.condition.VO.EmailVO;
+import com.swempire.web.condition.VO.ServerCurlVO;
 import com.swempire.web.condition.VO.ServiceTestVO;
-import com.swempire.web.condition.controller.RestConditionController;
 
 @Service
 public class CurlServiceImpl implements CurlService {
 
 	@Inject
 	CurlDAO curldao;
-	
+
 	@Inject
 	EmailDAO emaildao;
-		
-	@Inject
-	RestConditionController restconditioncontroller;
-	SendMailUtil smu = new SendMailUtil();
-	ServiceTestVO servicetestvo = new ServiceTestVO();
+
 	Curl curl = new Curl();
 	String condition;
 	String[] arr;
@@ -42,40 +38,33 @@ public class CurlServiceImpl implements CurlService {
 	}
 
 	@Override
-	public void curlShoot() throws Exception {
-
-		Curl curl = new Curl();
-		String[] headers = null;
-
-		curl.get("https://login.daegu.ac.kr/stonepass/sp/v1/fido/facets", headers);
-
-	}
-
-	@Override
 	public ConditionVO orgaSelect(ConditionVO conditionvo) throws Exception {
 
 		return curldao.orgaSelect(conditionvo);
 	}
 
 	@Override
-	public List<ConditionVO> orgaListSelect(ConditionVO conditionvo, ServiceTestVO servicetestvo, 
-			EmailVO emailvo,EmailPaginationVO pagination) throws Exception {
-		
-		
+	public List<ConditionVO> orgaListSelect(ConditionVO conditionvo, ServiceTestVO servicetestvo, EmailVO emailvo,
+			EmailPaginationVO pagination) throws Exception {
+
 		int checked = servicetestvo.getChecked();
 		int[] bidArray = servicetestvo.getBidArray();
-				
+
 		List<ConditionVO> list = curldao.orgaListSelect(conditionvo);
 		String[] arr = new String[list.size()];
-		List<EmailVO> emailList = emaildao.emailListSelect(pagination);
-		
-if (checked == 1) {					
+		List<EmailVO> emailList = emaildao.emailListSelect();
+
+		if (checked == 1) {
 			conditionvo.setBidArray(bidArray);
 
-			for (int i = 0; i < list.size(); i++) {			
+			for (int i = 0; i < list.size(); i++) {
 				list.get(i).getOrga_url();
 				curl.get(list.get(i).getOrga_url(), null);
 
+				
+				
+				
+				
 				int curlCode = curl.getCurlCode();
 				int errorNum = curl.getErrorNum();
 
@@ -87,24 +76,41 @@ if (checked == 1) {
 					emailvo.setBid(list.get(i).getBid());
 					emaildao.emailErrorOrganameSelect(emailvo);
 
+					//!!!!emailvo로 에러난 기관타이틀명을 가져와야함
+					
+					
+					
+					
 					String[] errorOrgaName = { emaildao.emailErrorOrganameSelect(emailvo).getOrga_name() };
 					// email수신자 설정
 					for (int j = 0; j < emailList.size(); j++) {
-						smu.setRecipient(emailList.get(j).getEmail());
+						SendMailUtil.setRecipient(emailList.get(j).getEmail());
 
 						// 연결상태 불량인 기관이름을 title에 추가(SendMailUtil클래스에 title값 저장)
 						for (int k = 0; k < errorOrgaName.length; k++) {
-							smu.setTitle(errorOrgaName[k]);
-							smu.send();
+							SendMailUtil.setTitle(errorOrgaName[k]);
+							/* SendMailUtil.send(); */
 						}
 					}
 					this.condition = "X";
 				}
 				arr[i] = condition;
 			}
-			this.arr = arr;	
-		}		
+			this.arr = arr;
+		}
 		return curldao.orgaListSelect(conditionvo);
+	}
+
+	@Override
+	public int serverCurlConnection(ServerCurlVO servercurlvo) throws Exception {
+		
+		return curldao.serverCurlConnection(servercurlvo);
+	}
+
+	@Override
+	public ServerCurlVO serverCurlConnectionYN() throws Exception {
+		
+		return curldao.serverCurlConnectionYN();
 	}
 
 }
