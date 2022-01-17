@@ -202,6 +202,7 @@ function serverCurl(e) {
 		/*btnCurl.value = "연결취소"*/
 		timerId = setTimeout(serverCurl, 10000);
 		var connection = "y";
+		var chkbox = $(".chkselect");
 	
 		$.ajax({
 			url: "serverCurl",
@@ -211,7 +212,7 @@ function serverCurl(e) {
 				connection: connection
 			},
 			success: function(result) {
-				alert(result)
+				$("#widget-heading").html(result.join(' / '));
 			},
 			error: function() {
 				

@@ -61,10 +61,16 @@ body {
 				onclick="serverCurl()" id="serverCurl"
 				name="serverCurl">
 			</span> -->
-			<span> <input value="서버연결" type="checkbox"
+			<label class="switch-button"> <input value="서버연결" type="checkbox" class="chkselect"
 				onchange="serverCurl(this)" id="serverCurl"
-				name="serverCurl">
-			</span> 
+				name="serverCurl"><span class="onoff-switch">
+			</span> </label>
+			
+			<%-- <label class="switch-button"> <input
+												class="chkselect" value="${list.bid}" type="checkbox"
+												onchange="kdw(this)" id="checkBoxId" name="checkBoxId" /> <span
+												class="onoff-switch"></span>
+										</label> --%>
 
 
 			<!--로딩바-->
@@ -169,7 +175,7 @@ body {
 					<div class="dropdown-menu-header">
 						<div class="dropdown-menu-header-inner bg-danger">
 							<div>
-								<h5 class="menu-header-title">CURL 접속불량 LIST</h5>
+								<h5 class="menu-header-title">CURL 연결상태불량 LIST</h5>
 							</div>
 						</div>
 					</div>
@@ -178,43 +184,12 @@ body {
 							<div class="widget-content p-0">
 								<div class="widget-content-wrapper">
 									<div class="widget-content-left">
-										<div class="widget-heading">January Sales</div>
+										<div class="widget-heading" id="widget-heading"></div>
 									</div>
 								</div>
 							</div>
 						</li>
-						<li class="list-group-item">
-							<div class="widget-content p-0">
-								<div class="widget-content-wrapper">
-									
-									<div class="widget-content-left">
-										<div class="widget-heading">February Sales</div>
-									</div>
-								</div>
-							</div>
-						</li>
-						<li class="list-group-item">
-							<div class="widget-content p-0">
-								<div class="widget-content-wrapper">
-									
-									<div class="widget-content-left">
-										<div class="widget-heading">March Sales</div>
-									</div>
-
-								</div>
-							</div>
-						</li>
-						<li class="list-group-item">
-							<div class="widget-content p-0">
-								<div class="widget-content-wrapper">
-									
-									<div class="widget-content-left">
-										<div class="widget-heading">April Sales</div>
-									</div>
-
-								</div>
-							</div>
-						</li>
+				
 					</ul>
 				</div>
 			</div>

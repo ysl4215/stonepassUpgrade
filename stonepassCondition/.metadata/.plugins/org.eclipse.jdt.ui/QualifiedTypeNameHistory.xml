@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="org.springframework.test.context.ContextConfiguration"/>
-    <fullyQualifiedTypeName name="org.springframework.test.context.junit4.SpringJUnit4ClassRunner"/>
     <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
     <fullyQualifiedTypeName name="com.swempire.web.condition.DAO.ConditionDAO"/>
     <fullyQualifiedTypeName name="com.swempire.web.condition.DAO.CurlDAO"/>
@@ -60,4 +58,6 @@
     <fullyQualifiedTypeName name="com.swempire.web.comm.util.Scheduler"/>
     <fullyQualifiedTypeName name="com.swempire.web.condition.controller.CurlRestController"/>
     <fullyQualifiedTypeName name="com.swempire.web.condition.VO.EmailVO"/>
+    <fullyQualifiedTypeName name="com.mchange.v2.sql.filter.SynchronizedFilterDataSource"/>
+    <fullyQualifiedTypeName name="java.util.ArrayList"/>
 </qualifiedTypeNameHistroy>

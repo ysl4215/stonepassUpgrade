@@ -1,5 +1,6 @@
 package com.swempire.web.condition.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -91,12 +92,13 @@ public class CurlRestController {
 	}
 	
 	@RequestMapping(value = "/serverCurl", method = RequestMethod.POST)
-	public String serverCurlArray(ServerCurlVO servercurlvo,Scheduler scheduler) throws Exception {
+	public ArrayList<String> serverCurlArray(ServerCurlVO servercurlvo,Scheduler scheduler) throws Exception {
+		
+		
 		curlService.serverCurlConnection(servercurlvo);
 		
-		
-		
-		return "";
+		//연결상태불량 기관이름 return
+		return scheduler.getErrorOrga();
 	}
 
 }

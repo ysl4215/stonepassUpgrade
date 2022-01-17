@@ -1,5 +1,6 @@
 package com.swempire.web.comm.util;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -13,7 +14,6 @@ import org.springframework.stereotype.Component;
 
 import com.swempire.web.condition.VO.ConditionVO;
 import com.swempire.web.condition.VO.EmailVO;
-import com.swempire.web.condition.controller.CurlRestController;
 import com.swempire.web.condition.service.ConditionService;
 import com.swempire.web.condition.service.CurlService;
 import com.swempire.web.condition.service.EmailService;
@@ -30,6 +30,12 @@ public class Scheduler {
 	@Inject
 	private CurlService curlService;
 	
+	private static ArrayList<String> errorOrga;
+	
+	public ArrayList<String> getErrorOrga() {
+		return errorOrga;
+	}
+
 	int stop;
 
 	public int getStop() {
@@ -41,7 +47,7 @@ public class Scheduler {
 	}
 
 	private ThreadPoolTaskScheduler scheduler;
-	private String cron = "*/30 * * * * *";
+	private String cron = "*/10 * * * * *";
 
 	
 	public void startScheduler() {
@@ -75,7 +81,8 @@ public class Scheduler {
 
 					// System.out.println(conditionservice.getBoardList());
 					List<EmailVO> emailList = emailservice.emailListSelect();
-						
+					
+					ArrayList<String> array = new ArrayList<String>();
 					for (int i = 0; i < orgaList.size(); i++) {
 
 						String url = conditionservice.getBoardList().get(i).getOrga_url();
@@ -92,32 +99,48 @@ public class Scheduler {
 							// 에러발생한 기관(bid) Select
 							emailvo.setBid(orgaList.get(i).getBid());
 							emailvo.setOrga_name(orgaList.get(i).getOrga_name());
-						
 							
-						//연결상태불량 기관 타이틀명 저장
-							String[] errorOrgaName = { emailservice.emailErrorOrganameSelect(emailvo).getOrga_name() };
+							//연결상태불량 기관 타이틀명 저장
+							String errorOrgaName = emailservice.emailErrorOrganameSelect(emailvo).getOrga_name();
 								
-							
+							System.out.println(errorOrgaName);
 							
 							// 에러발생한 이메일주소 Recipient set
 							for (int j = 0; j < emailList.size(); j++) {
 								SendMailUtil.setRecipient(emailList.get(j).getEmail());
 
 								// 연결상태 불량인 기관이름을 title에 추가(SendMailUtil클래스에 title값 저장)
-								for (int k = 0; k < errorOrgaName.length; k++) {
-									
-									SendMailUtil.setTitle(errorOrgaName[k]);
+									SendMailUtil.setTitle(errorOrgaName);
 									
 									// email보내기
-									//SendMailUtil.send();
-								}
+									SendMailUtil.send();
 							}
-							this.stop = 0;
-							System.out.println(emailvo.getOrga_name());
 							
-							//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-						}	
+							
+								/*
+								 * //연결상태불량 기관 타이틀명 저장 String[] errorOrgaName = {
+								 * emailservice.emailErrorOrganameSelect(emailvo).getOrga_name() };
+								 * 
+								 * System.out.println(errorOrgaName.length);
+								 * 
+								 * // 에러발생한 이메일주소 Recipient set for (int j = 0; j < emailList.size(); j++) {
+								 * SendMailUtil.setRecipient(emailList.get(j).getEmail());
+								 * 
+								 * // 연결상태 불량인 기관이름을 title에 추가(SendMailUtil클래스에 title값 저장) for (int k = 0; k <
+								 * errorOrgaName.length; k++) {
+								 * 
+								 * SendMailUtil.setTitle(errorOrgaName[k]);
+								 * 
+								 * // email보내기 //SendMailUtil.send(); } }
+								 */
+							
+							
+							this.stop = 0;
+							array.add(orgaList.get(i).getOrga_name());
+						}
 					}
+					Scheduler.errorOrga = array;
+					
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
