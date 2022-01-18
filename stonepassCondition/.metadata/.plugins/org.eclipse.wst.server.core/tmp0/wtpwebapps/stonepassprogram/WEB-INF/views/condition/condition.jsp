@@ -15,13 +15,40 @@
 	href="/resources/common/css/condition/monitor.css">
 <%-- <link rel="stylesheet"
 	href="<c:url value='/resources/common/css/common.css'/>"> --%>
-
 <!-- Bootstrap CSS -->
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
-	integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
 	crossorigin="anonymous">
-
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+	integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+	crossorigin="anonymous"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
+	integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"
+	crossorigin="anonymous"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
+	integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
+	crossorigin="anonymous"></script>
+<!-- <link href="/resources/common/bootstrap/css/bootstrap.css" rel="stylesheet">
+<link href="/resources/common/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="/resources/common/bootstrap/css/bootstrap.rtl.css" rel="stylesheet">
+<link href="/resources/common/bootstrap/css/bootstrap.rtl.min.css" rel="stylesheet">
+<link href="/resources/common/bootstrap/css/bootstrap-grid.css" rel="stylesheet">
+<link href="/resources/common/bootstrap/css/bootstrap-grid.min.css" rel="stylesheet">
+<link href="/resources/common/bootstrap/css/bootstrap-grid.rtl.css" rel="stylesheet">
+<link href="/resources/common/bootstrap/css/bootstrap-grid.rtl.min.css" rel="stylesheet">
+<link href="/resources/common/bootstrap/css/bootstrap-reboot.css" rel="stylesheet">
+<link href="/resources/common/bootstrap/css/bootstrap-reboot.min.css" rel="stylesheet">
+<link href="/resources/common/bootstrap/css/bootstrap-reboot.rtl.css" rel="stylesheet">
+<link href="/resources/common/bootstrap/css/bootstrap-reboot.rtl.min.css" rel="stylesheet">
+<link href="/resources/common/bootstrap/css/bootstrap-utilities.css" rel="stylesheet">
+<link href="/resources/common/bootstrap/css/bootstrap-utilities.min.css" rel="stylesheet">
+<link href="/resources/common/bootstrap/css/bootstrap-utilities.rtl.css" rel="stylesheet">
+<link href="/resources/common/bootstrap/css/bootstrap-utilities.rtl.min.css" rel="stylesheet"> -->
 <title>스톤패스 연결확인 프로그램</title>
 <style>
 body {
@@ -46,7 +73,17 @@ body {
 	</nav>
 
 	<article class="all">
-		<br> <br>
+		<br><br>
+		<div class="col-md-6">
+			<div class="card-hover-shadow-2x mb-3 card">
+				<div class="card-header">연결상태불량 기관</div>
+				<div class="card-body">
+					<p class="mb-0"><div class="widget-heading" id="widget-heading"></div></p>
+				</div>
+				<div class="d-block text-right card-footer">
+				</div>
+			</div>
+		</div>
 		<!-- class="board" -->
 		<div class="board">
 			<div>
@@ -57,21 +94,10 @@ body {
 					onclick="email()">E-mail</button>
 			</div>
 
-			<br> <!-- <span> <input value="서버연결" type="button"
-				onclick="serverCurl()" id="serverCurl"
-				name="serverCurl">
-			</span> -->
-			<label class="switch-button"> <input value="서버연결" type="checkbox" class="chkselect"
-				onchange="serverCurl(this)" id="serverCurl"
-				name="serverCurl"><span class="onoff-switch">
-			</span> </label>
-			
-			<%-- <label class="switch-button"> <input
-												class="chkselect" value="${list.bid}" type="checkbox"
-												onchange="kdw(this)" id="checkBoxId" name="checkBoxId" /> <span
-												class="onoff-switch"></span>
-										</label> --%>
-
+			<br> <label class="switch-button"> <input value="서버연결"
+				type="checkbox" onchange="serverCurl(this)" id="serverCurl"
+				name="serverCurl"><span class="onoff-switch"> </span>
+			</label>
 
 			<!--로딩바-->
 			<div id="loading" style="margin-left: 0px;">
@@ -115,9 +141,14 @@ body {
 							</c:when>
 
 							<c:when test="${!empty conditionlist}">
-								<c:forEach var="list" items="${conditionlist}">
+								<c:forEach varStatus="status" var="list"
+									items="${conditionlist}">
 									<tr>
-										<td><c:out value="${list.bid}" /></td>
+
+										<td><c:out
+												value="${(pagination.listCnt-status.index)-((pagination.page-1)*pagination.listSize)}" /></td>
+
+										<%-- <td><c:out value="${list.bid}" /></td> --%>
 										<td><c:out value="${list.orga_name}" /></td>
 
 										<td><a href="#" onclick="modify(${list.bid})"><c:out
@@ -169,35 +200,8 @@ body {
 
 
 
-		<div class="monitor">
-			<div class="col-md-12">
-				<div class="card-shadow-primary profile-responsive card-border mb-3 card">
-					<div class="dropdown-menu-header">
-						<div class="dropdown-menu-header-inner bg-danger">
-							<div>
-								<h5 class="menu-header-title">CURL 연결상태불량 LIST</h5>
-							</div>
-						</div>
-					</div>
-					<ul class="list-group list-group-flush">
-						<li class="list-group-item">
-							<div class="widget-content p-0">
-								<div class="widget-content-wrapper">
-									<div class="widget-content-left">
-										<div class="widget-heading" id="widget-heading"></div>
-									</div>
-								</div>
-							</div>
-						</li>
-				
-					</ul>
-				</div>
-			</div>
-		</div>
 	</article>
-
 	<script src="/resources/common/js/condition/condition.js"></script>
-
 </body>
 </html>
 

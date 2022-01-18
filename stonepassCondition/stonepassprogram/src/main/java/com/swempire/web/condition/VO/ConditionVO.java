@@ -1,7 +1,5 @@
 package com.swempire.web.condition.VO;
 
-import java.util.Arrays;
-
 public class ConditionVO {
 	
 	int bid;

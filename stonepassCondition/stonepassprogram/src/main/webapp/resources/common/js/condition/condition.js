@@ -1,6 +1,27 @@
 $(document).ready(function() {
+	var connection = "n";
+
+	$.ajax({
+		url: "serverCurl",
+		type: 'post',
+		/*dataType: "JSON",*/
+		data: {
+			connection: connection
+		},
+		success: function(result) {
+		},
+		error: function() {
+			alert("error");
+		}
+	});
 	$('#loading').hide();
 });
+
+if (performance.navigation.type == 1) {
+	console.info("aaaa");
+} else {
+	console.info("bbbb");
+}
 
 // condition.jsp
 function email() {
@@ -65,6 +86,7 @@ function kdw(kdwthis) {
 function checkall() {
 	// 2. #checkAll이 체크되었을 때,
 	// chk라는 name을 가진 input태그를 찾아 checked를 true로 정의
+
 	if ($("#checkAll").prop("checked")) {
 		$('#loading').show();
 		/*timerId = setTimeout(checkall, 5000);*/
@@ -76,6 +98,7 @@ function checkall() {
 		for (i = 0; i < chkbox.length; i++) {
 			chkbox[i].checked = checkAll.checked;
 		}
+
 		//버튼 활성화시 Chk()로 이동
 		Chk();
 		// 3. #checkAll이 체크되지 않았을 때,
@@ -137,6 +160,7 @@ function Chk() {
 	}
 	var bidArray = result;
 	var values = 1;
+
 	$.ajax({
 		url: "conditionCurlArray",
 		type: 'post',
@@ -197,13 +221,12 @@ function fn_next(page, range, rangeSize) {
 
 function serverCurl(e) {
 	const btnCurl = document.getElementById('serverCurl');
-	
+
 	if ($("#serverCurl").prop("checked")) {
 		/*btnCurl.value = "연결취소"*/
 		timerId = setTimeout(serverCurl, 10000);
 		var connection = "y";
-		var chkbox = $(".chkselect");
-	
+
 		$.ajax({
 			url: "serverCurl",
 			type: 'post',
@@ -212,10 +235,16 @@ function serverCurl(e) {
 				connection: connection
 			},
 			success: function(result) {
-				$("#widget-heading").html(result.join(' / '));
+				
+				if (result == "") {
+
+				} else {
+					$("#widget-heading").html(result.join(' / '));
+				}
+
 			},
 			error: function() {
-				
+
 			}
 		});
 
@@ -244,7 +273,7 @@ function serverCurl(e) {
 
 function serverCurldfd() {
 	const btnCurl = document.getElementById('serverCurl');
-	
+
 	if (btnCurl.value === "서버연결") {
 		/*btnCurl.value = "연결취소"*/
 		/*timerId = setTimeout(checkall, 5000);*/

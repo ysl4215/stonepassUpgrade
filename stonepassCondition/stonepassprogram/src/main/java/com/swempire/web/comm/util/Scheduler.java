@@ -55,7 +55,6 @@ public class Scheduler {
 		scheduler.initialize();
 		// scheduler setting
 		scheduler.schedule(getRunnable(), getTrigger());
-
 	}
 
 	public void changeCronSet(String cron) {
@@ -113,7 +112,7 @@ public class Scheduler {
 									SendMailUtil.setTitle(errorOrgaName);
 									
 									// email보내기
-									SendMailUtil.send();
+									//SendMailUtil.send();
 							}
 							
 							

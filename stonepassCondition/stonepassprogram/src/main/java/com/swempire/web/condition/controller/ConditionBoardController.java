@@ -7,7 +7,6 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -15,10 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.swempire.web.condition.VO.ConditionPaginationVO;
 import com.swempire.web.condition.VO.ConditionVO;
-import com.swempire.web.condition.VO.EmailPaginationVO;
-import com.swempire.web.condition.VO.EmailVO;
 import com.swempire.web.condition.service.ConditionService;
-import com.swempire.web.condition.service.CurlService;
 
 @Controller
 public class ConditionBoardController {
@@ -106,5 +102,4 @@ public class ConditionBoardController {
 
 		return "success";
 	}
-
 }

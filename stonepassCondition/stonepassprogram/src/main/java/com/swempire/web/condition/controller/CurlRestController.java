@@ -30,7 +30,7 @@ public class CurlRestController {
 	@Inject
 	private EmailService emailservice;
 
-	String condition;
+	
 	
 	
 

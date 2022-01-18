@@ -1,8 +1,0 @@
-article{
-	width:100%;
-}
-
-.monitor{
-width:500px;	
-text-align: right;
-}
