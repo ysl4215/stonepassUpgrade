@@ -44,32 +44,4 @@
 		DELETE FROM condition_board WHERE BID = #{bid}
 	</delete>
 	
-
-<!-- 	<update id="updateBoard"
-		parameterType="com.swempire.web.condition.VO.ConditionVO">
-		UPDATE TBL_BOARD SET
-		CATE_CD = #{cate_cd}
-		, TITLE = #{title}
-		, CONTENT = #{content}
-		, TAG = #{tag}
-		, EDIT_DT = now()
-		WHERE
-		BID = ${bid}
-	</update>
-
-
-
-	<delete id="deleteBoard" parameterType="int">
-		DELETE FROM TBL_BOARD
-		WHERE BID = #{bid}
-	</delete>
-
-	<update id="updateViewCnt"
-		parameterType="com.swempire.web.condition.VO.ConditionVO">
-		UPDATE TBL_BOARD SET
-		VIEW_CNT = VIEW_CNT + 1
-		WHERE
-		BID = #{bid} 
-	</update>  -->
-
 </mapper>

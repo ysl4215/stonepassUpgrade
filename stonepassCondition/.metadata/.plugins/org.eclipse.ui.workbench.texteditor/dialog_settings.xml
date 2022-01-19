@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value="monitor"/>
+		<item key="selection" value="serverCurl"/>
 		<item key="casesensitive" value="false"/>
 		<item key="wholeword" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<item key="wrap" value="true"/>
 		<item key="incremental" value="false"/>
 		<list key="findhistory">
+			<item value="serverCurl"/>
+			<item value="30"/>
+			<item value="listCnt"/>
 			<item value="monitor"/>
 			<item value="widget-heading"/>
 			<item value="addre"/>
 			<item value="&lt;article class=&quot;all&quot;&gt;"/>
 			<item value="&lt;body&gt;"/>
-			<item value="chkselect"/>
-			<item value="&lt;span class=&quot;onoff-switch&quot;&gt;&lt;/span&gt;"/>
-			<item value="chkbox"/>
 		</list>
 		<list key="replacehistory">
 		</list>

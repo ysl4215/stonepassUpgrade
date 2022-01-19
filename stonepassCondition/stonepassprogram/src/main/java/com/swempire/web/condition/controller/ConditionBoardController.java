@@ -37,10 +37,6 @@ public class ConditionBoardController {
 		model.addAttribute("pagination", pagination);
 		model.addAttribute("conditionlist", conditionlist);
 		
-		
-		
-		
-		
 		/* model.addAttribute("boardList", conditionservice.getBoardList()); */
 
 		return "/condition/condition";
@@ -71,11 +67,10 @@ public class ConditionBoardController {
 	@GetMapping("/condition/content")
 	public void contentBoard(@RequestParam(required = false, defaultValue = "1") int bid, ConditionVO conditionvo,
 			Model model) throws Exception {
-
+	
 		conditionservice.contentBoard(conditionvo);
 
 		model.addAttribute("contentboard", conditionservice.contentBoard(conditionvo));
-
 	}
 
 	@RequestMapping(value = "/condition/conditionModify", method = RequestMethod.POST)
@@ -102,4 +97,16 @@ public class ConditionBoardController {
 
 		return "success";
 	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/selectOption", method = RequestMethod.POST)
+	public String listCntSelect(ConditionPaginationVO conpaging)
+			throws Exception {
+		
+			System.out.println(conpaging.getListSize());
+
+		return "";
+	}
+	
+
 }

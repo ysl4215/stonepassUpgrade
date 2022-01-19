@@ -17,7 +17,6 @@
     <fullyQualifiedTypeName name="org.apache.ibatis.session.SqlSession"/>
     <fullyQualifiedTypeName name="org.springframework.ui.Model"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.GetMapping"/>
-    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.ResponseBody"/>
     <fullyQualifiedTypeName name="com.google.protobuf.Message"/>
     <fullyQualifiedTypeName name="com.mysql.cj.Session"/>
     <fullyQualifiedTypeName name="com.swempire.web.condition.service.EmailService"/>
@@ -49,7 +48,6 @@
     <fullyQualifiedTypeName name="java.lang.Object"/>
     <fullyQualifiedTypeName name="com.swempire.web.condition.VO.EmailPaginationVO"/>
     <fullyQualifiedTypeName name="java.lang.Math"/>
-    <fullyQualifiedTypeName name="com.swempire.web.condition.VO.ConditionPaginationVO"/>
     <fullyQualifiedTypeName name="com.swempire.web.comm.util.SendMailUtil"/>
     <fullyQualifiedTypeName name="com.swempire.web.condition.VO.ServerCurlVO"/>
     <fullyQualifiedTypeName name="javax.inject.Inject"/>
@@ -60,4 +58,6 @@
     <fullyQualifiedTypeName name="com.swempire.web.condition.VO.EmailVO"/>
     <fullyQualifiedTypeName name="com.mchange.v2.sql.filter.SynchronizedFilterDataSource"/>
     <fullyQualifiedTypeName name="java.util.ArrayList"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.ResponseBody"/>
+    <fullyQualifiedTypeName name="com.swempire.web.condition.VO.ConditionPaginationVO"/>
 </qualifiedTypeNameHistroy>

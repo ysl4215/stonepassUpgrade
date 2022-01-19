@@ -1,6 +1,7 @@
+//새로고침 직후 바로 작동
 $(document).ready(function() {
+	//새로고침 직후 DB로 n을 보내서 스케줄러 정지
 	var connection = "n";
-
 	$.ajax({
 		url: "serverCurl",
 		type: 'post',
@@ -17,6 +18,7 @@ $(document).ready(function() {
 	$('#loading').hide();
 });
 
+//새로고침 직후 바로 작동
 if (performance.navigation.type == 1) {
 	console.info("aaaa");
 } else {
@@ -185,31 +187,33 @@ function Chk() {
 }
 
 //이전 버튼 이벤트
-function fn_prev(page, range, rangeSize) {
+function fn_prev(page, range, rangeSize,listSize) {
 	var page = ((range - 2) * rangeSize) + 1;
 	var range = range - 1;
 	var url = "/condition";
 	url = url + "?page=" + page;
 	url = url + "&range=" + range;
+	url = url + "&listSize=" + listSize;
 	location.href = url;
 }
 
 //페이지 번호 클릭
-function fn_pagination(page, range, rangeSize, searchType, keyword) {
+function fn_pagination(page, range, rangeSize,listSize, searchType, keyword) {
 	var url = "/condition";
 	url = url + "?page=" + page;
 	url = url + "&range=" + range;
+	url = url + "&listSize=" + listSize;
 	location.href = url;
 }
 
 //다음 버튼 이벤트
-function fn_next(page, range, rangeSize) {
+function fn_next(page, range, rangeSize, listSize) {
 	var page = parseInt((range * rangeSize)) + 1;
 	var range = parseInt(range) + 1;
 	var url = "/condition";
 	url = url + "?page=" + page;
 	url = url + "&range=" + range;
-	alert(url)
+	url = url + "&listSize=" + listSize;
 	location.href = url;
 }
 
@@ -217,11 +221,8 @@ function fn_next(page, range, rangeSize) {
 //$('#loading').show();
 //$('#loading').hide();
 
-//서버버튼 클릭
-
+//서버 CURL버튼 클릭
 function serverCurl(e) {
-	const btnCurl = document.getElementById('serverCurl');
-
 	if ($("#serverCurl").prop("checked")) {
 		/*btnCurl.value = "연결취소"*/
 		timerId = setTimeout(serverCurl, 10000);
@@ -235,20 +236,15 @@ function serverCurl(e) {
 				connection: connection
 			},
 			success: function(result) {
-				
 				if (result == "") {
 
 				} else {
 					$("#widget-heading").html(result.join(' / '));
 				}
-
 			},
 			error: function() {
-
 			}
 		});
-
-
 	} else {
 		/*btnCurl.value = "서버연결"*/
 		var connection = "n";
@@ -266,53 +262,22 @@ function serverCurl(e) {
 				alert("error");
 			}
 		});
-
-	}
-
-}
-
-function serverCurldfd() {
-	const btnCurl = document.getElementById('serverCurl');
-
-	if (btnCurl.value === "서버연결") {
-		/*btnCurl.value = "연결취소"*/
-		/*timerId = setTimeout(checkall, 5000);*/
-		var connection = "n";
-
-		$.ajax({
-			url: "serverCurl",
-			type: 'post',
-			/*dataType: "JSON",*/
-			data: {
-				connection: connection
-			},
-			success: function(result) {
-				alert(result)
-			},
-			error: function() {
-				alert("error");
-			}
-		});
-
-
-	} else {
-		btnCurl.value = "서버연결"
-		var connection = "n";
-
-		$.ajax({
-			url: "serverCurl",
-			type: 'post',
-			/*dataType: "JSON",*/
-			data: {
-				connection: connection
-			},
-			success: function(result) {
-			},
-			error: function() {
-				alert("error");
-			}
-		});
-
 	}
 }
 
+function listSize(testId){
+	
+	var startPage = testId;
+	var listSize = $("#listSize option:selected").val();
+		
+	  if(listSize == 10){
+		  var url="/condition?startPage="+startPage+"&listSize="+listSize
+	  }else if(listSize == 30){
+		  var url="/condition?startPage="+startPage+"&listSize="+listSize
+	  }else if(listSize == 50){
+	      var url="/condition?startPage="+startPage+"&listSize="+listSize
+	  }else if(listSize == 100){
+	      var url="/condition?startPage="+startPage+"&listSize="+listSize
+	  }
+	  location.href = url;
+}

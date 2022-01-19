@@ -1,7 +1,8 @@
 package com.swempire.web.condition.VO;
 
 public class ConditionPaginationVO {
-	private int listSize = 10; // 초기값으로 목록개수를 10으로 셋팅
+	//private int listSize = 10; // 초기값으로 목록개수를 10으로 셋팅
+	private int listSize = 10;
 	private int rangeSize = 10; // 초기값으로 페이지범위를 10으로 셋팅
 	private int page;
 	private int range;
@@ -12,7 +13,7 @@ public class ConditionPaginationVO {
 	private int endPage;
 	private boolean prev;
 	private boolean next;
-
+	
 	public int getRangeSize() {
 		return rangeSize;
 	}

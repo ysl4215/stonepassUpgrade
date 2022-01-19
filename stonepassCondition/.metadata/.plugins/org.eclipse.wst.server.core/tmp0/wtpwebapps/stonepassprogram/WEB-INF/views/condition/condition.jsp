@@ -33,22 +33,7 @@
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
 	integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
 	crossorigin="anonymous"></script>
-<!-- <link href="/resources/common/bootstrap/css/bootstrap.css" rel="stylesheet">
-<link href="/resources/common/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-<link href="/resources/common/bootstrap/css/bootstrap.rtl.css" rel="stylesheet">
-<link href="/resources/common/bootstrap/css/bootstrap.rtl.min.css" rel="stylesheet">
-<link href="/resources/common/bootstrap/css/bootstrap-grid.css" rel="stylesheet">
-<link href="/resources/common/bootstrap/css/bootstrap-grid.min.css" rel="stylesheet">
-<link href="/resources/common/bootstrap/css/bootstrap-grid.rtl.css" rel="stylesheet">
-<link href="/resources/common/bootstrap/css/bootstrap-grid.rtl.min.css" rel="stylesheet">
-<link href="/resources/common/bootstrap/css/bootstrap-reboot.css" rel="stylesheet">
-<link href="/resources/common/bootstrap/css/bootstrap-reboot.min.css" rel="stylesheet">
-<link href="/resources/common/bootstrap/css/bootstrap-reboot.rtl.css" rel="stylesheet">
-<link href="/resources/common/bootstrap/css/bootstrap-reboot.rtl.min.css" rel="stylesheet">
-<link href="/resources/common/bootstrap/css/bootstrap-utilities.css" rel="stylesheet">
-<link href="/resources/common/bootstrap/css/bootstrap-utilities.min.css" rel="stylesheet">
-<link href="/resources/common/bootstrap/css/bootstrap-utilities.rtl.css" rel="stylesheet">
-<link href="/resources/common/bootstrap/css/bootstrap-utilities.rtl.min.css" rel="stylesheet"> -->
+
 <title>스톤패스 연결확인 프로그램</title>
 <style>
 body {
@@ -70,18 +55,21 @@ body {
 <body>
 	<nav class="navbar navbar-dark bg-dark">
 		<a class="navbar-brand" href="#">스톤패스 연결확인 프로그램</a>
-	</nav>
-
+	</nav><br>
 	<article class="all">
-		<br><br>
 		<div class="col-md-6">
+			<label class="switch-button"> <input value="서버연결"
+				type="checkbox" onchange="serverCurl(this)" id="serverCurl"
+				name="serverCurl"><span class="onoff-switch"> </span>
+			</label>
+
 			<div class="card-hover-shadow-2x mb-3 card">
 				<div class="card-header">연결상태불량 기관</div>
 				<div class="card-body">
 					<p class="mb-0"><div class="widget-heading" id="widget-heading"></div></p>
+
 				</div>
-				<div class="d-block text-right card-footer">
-				</div>
+				<div class="d-block text-right card-footer"></div>
 			</div>
 		</div>
 		<!-- class="board" -->
@@ -93,11 +81,7 @@ body {
 				<button type="button" class="btn btn-sm btn-primary"
 					onclick="email()">E-mail</button>
 			</div>
-
-			<br> <label class="switch-button"> <input value="서버연결"
-				type="checkbox" onchange="serverCurl(this)" id="serverCurl"
-				name="serverCurl"><span class="onoff-switch"> </span>
-			</label>
+			<br>
 
 			<!--로딩바-->
 			<div id="loading" style="margin-left: 0px;">
@@ -107,6 +91,13 @@ body {
 
 			<div class="table-responsive">
 				<table class="table table-striped table-sm">
+					<label>
+					<select class="dataTable-selector" id="listSize" onchange="listSize(this.options[this.selectedIndex].value);">
+							<option value="10" id="option1" <c:if test="${pagination.getListSize() == 10 }">selected="selected"</c:if>>10</option>
+							<option value="30" id="option2" <c:if test="${pagination.getListSize() == 30 }">selected="selected"</c:if>>30</option>
+							<option value="50" id="option3" <c:if test="${pagination.getListSize() == 50 }">selected="selected"</c:if>>50</option>
+							<option value="100" id="option4" <c:if test="${pagination.getListSize() == 100 }">selected="selected"</c:if>>100</option>
+							</select> entries per page</label>
 					<colgroup>
 						<col style="width: 5%;" />
 						<col style="width: 20%;" />
@@ -174,7 +165,7 @@ body {
 					<ul class="pagination">
 						<c:if test="${pagination.prev}">
 							<li class="page-item"><a class="page-link" href="#"
-								onClick="fn_prev('${pagination.page}', '${pagination.range}', '${pagination.rangeSize}')">
+								onClick="fn_prev('${pagination.page}', '${pagination.range}', '${pagination.rangeSize}','${pagination.listSize}')">
 									Previous</a></li>
 						</c:if>
 
@@ -183,22 +174,20 @@ body {
 							<li
 								class="page-item <c:out value="${pagination.page == idx ? 'active' : ''}"/> ">
 								<a class="page-link" href="#"
-								onClick="fn_pagination('${idx}', '${pagination.range}', '${pagination.rangeSize}')">
+								onClick="fn_pagination('${idx}', '${pagination.range}', '${pagination.rangeSize}', '${pagination.listSize}')">
 									${idx} </a>
 							</li>
 						</c:forEach>
 						<c:if test="${pagination.next}">
 							<li class="page-item"><a class="page-link" href="#"
 								onClick="fn_next('${pagination.range}', 
-				'${pagination.range}', '${pagination.rangeSize}')">Next</a></li>
+				'${pagination.range}', '${pagination.rangeSize}','${pagination.listSize}')">Next</a></li>
 						</c:if>
 					</ul>
 					<!-- pagination{e} -->
 				</div>
 			</div>
 		</div>
-
-
 
 	</article>
 	<script src="/resources/common/js/condition/condition.js"></script>
