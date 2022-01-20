@@ -54,7 +54,7 @@ body {
 
 <body>
 	<nav class="navbar navbar-dark bg-dark">
-		<a class="navbar-brand" href="#">스톤패스 연결확인 프로그램</a>
+		<a class="navbar-brand" href="condition">스톤패스 연결확인 프로그램</a>
 	</nav><br>
 	<article class="all">
 		<div class="col-md-6">

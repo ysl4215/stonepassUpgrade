@@ -47,55 +47,12 @@ public class ConditionBoardController {
 			@RequestParam(required = false, defaultValue = "1") String orga_url, ConditionVO conditionvo)
 			throws Exception {
 
-		System.out.println(orga_name);
-
 		conditionvo.setOrga_name(orga_name);
 		conditionvo.setOrga_url(orga_url);
 
 		conditionservice.insertBoard(conditionvo);
 
 		return "redirect:/condition";
-	}
-
-	@GetMapping(value = "/orgainsert")
-	public String organizationGET2() throws Exception {
-
-		return "/condition/orgainsert";
-	}
-
-	// 컨트롤러에서 반환형 void를 사용하면 Mapping값으로 JSP찾아감
-	@GetMapping("/condition/content")
-	public void contentBoard(@RequestParam(required = false, defaultValue = "1") int bid, ConditionVO conditionvo,
-			Model model) throws Exception {
-	
-		conditionservice.contentBoard(conditionvo);
-
-		model.addAttribute("contentboard", conditionservice.contentBoard(conditionvo));
-	}
-
-	@RequestMapping(value = "/condition/conditionModify", method = RequestMethod.POST)
-	public String conditionModify(@RequestParam(required = false, defaultValue = "1") String orga_name,
-			@RequestParam(required = false, defaultValue = "1") String orga_url,
-			@RequestParam(required = false, defaultValue = "1") int bid, ConditionVO conditionvo) throws Exception {
-		System.out.println(orga_url);
-		System.out.println(orga_name);
-		conditionvo.setBid(bid);
-		conditionvo.setOrga_name(orga_name);
-		conditionvo.setOrga_url(orga_url);
-
-		conditionservice.modifyBoard(conditionvo);
-
-		return "redirect:/condition";
-	}
-	
-	@ResponseBody
-	@RequestMapping(value = "/condition/conditionDelete", method = RequestMethod.POST)
-	public String conditionDelete(@RequestParam(required = false, defaultValue = "1") int bid, ConditionVO conditionvo)
-			throws Exception {
-
-		conditionservice.deleteBoard(conditionvo);
-
-		return "success";
 	}
 	
 	@ResponseBody

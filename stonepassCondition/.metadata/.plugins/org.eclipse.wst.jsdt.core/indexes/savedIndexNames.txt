@@ -2,7 +2,6 @@ INDEX VERSION 1.4+D:\stonepassConditionCheckver4\stonepassCondition\.metadata\.p
 950101742.index
 2854784287.index
 1021215608.index
-1638843084.index
 732634452.index
 3602175820.index
 2733404344.index

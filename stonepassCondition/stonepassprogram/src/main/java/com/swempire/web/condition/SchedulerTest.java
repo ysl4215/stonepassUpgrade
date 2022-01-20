@@ -1,22 +1,22 @@
-package com.swempire.web.comm.util;
-//package com.swempire.web.comm.util;
+//package com.swempire.web.condition;
+//
 //
 //import java.util.List;
 //
-//import javax.annotation.PreDestroy;
 //import javax.inject.Inject;
 //
 //import org.springframework.scheduling.annotation.Scheduled;
 //import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler;
 //import org.springframework.stereotype.Component;
 //
+//import com.swempire.web.comm.util.SendMailUtil;
 //import com.swempire.web.condition.VO.ConditionVO;
 //import com.swempire.web.condition.VO.EmailVO;
 //import com.swempire.web.condition.service.ConditionService;
 //import com.swempire.web.condition.service.EmailService;
 //
 //@Component
-//public class Scheduler {
+//public class SchedulerTest {
 //
 //	@Inject
 //	ConditionService conditionservice;
@@ -26,7 +26,7 @@ package com.swempire.web.comm.util;
 //
 //	private ThreadPoolTaskScheduler scheduler;
 //
-//	Curl curl = new Curl();
+//	
 //	EmailVO emailvo = new EmailVO();
 //	SendMailUtil smu = new SendMailUtil();
 //
@@ -37,7 +37,7 @@ package com.swempire.web.comm.util;
 //
 //		System.out.println(conditionservice.getBoardList());
 //		List<EmailVO> emailList = emailservice.emailListSelect();
-//
+//		Curl curl = new Curl();
 //		for (int i = 0; i < list.size(); i++) {
 //
 //			String url = conditionservice.getBoardList().get(i).getOrga_url();

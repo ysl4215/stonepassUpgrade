@@ -6,8 +6,10 @@ $(document).on('click', '#cencle', function(e) {
 $(document).on('click', '#orga_modify', function(e) {
 
 	if (!checkOrganame(form.orga_name.value)) {
+		form.orga_name.focus();
             return false;
         } else if (!checkUrl(form.orga_url.value)) {
+		form.orga_url.focus();
 			return false;
 }
 
@@ -38,10 +40,7 @@ $(document).on('click', '#orga_modify', function(e) {
 	} else {
 		return false;
 	}
-
 });
-
-
 
 $(document).on('click', '#orga_delete', function(e) {
 
@@ -55,7 +54,6 @@ $(document).on('click', '#orga_delete', function(e) {
 				bid: bid
 			},
 			success: function(result) {
-
 				opener.parent.location.reload();
 				window.close();
 			},
@@ -64,11 +62,9 @@ $(document).on('click', '#orga_delete', function(e) {
 			}
 		});
 		return true;
-
 	} else {
 		return false;
 	}
-
 });
 
 // 공백확인 함수
@@ -92,9 +88,7 @@ function checkUrl(url) {
 	//mail이 입력되었는지 확인하기
 	if (!checkExistData(url, "URL을")){
 		return false;
-		
 	}
-
 	if (url.indexOf("http://") == 0 || url.indexOf("https://") == 0) {
 		return true;  //확인이 완료되었을 때
 	} else {

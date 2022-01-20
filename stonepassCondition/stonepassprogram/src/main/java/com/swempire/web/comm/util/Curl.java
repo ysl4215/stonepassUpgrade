@@ -144,7 +144,7 @@ public class Curl {
 			
 			hurlc.connect();
 			int responseCode = hurlc.getResponseCode();
-			String responseMessage = hurlc.getResponseMessage();
+			//String responseMessage = hurlc.getResponseMessage();
 			this.curlCode = responseCode;
 			
 			logger.info("[Get] Response Code::: " + responseCode);
@@ -211,14 +211,10 @@ public class Curl {
 			if ( !"IOEXCEPTION".equals(ret) ) {
 				break;
 			}
-			
 		}
-		
 		return ret;
-
 	}
 	//*/
-	
 		/**
 		 * post 통신
 		 * @param strUrl: 통신할 서버 주소

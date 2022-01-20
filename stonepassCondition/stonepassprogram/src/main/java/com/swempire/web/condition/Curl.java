@@ -10,7 +10,6 @@ import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
 
-import javax.inject.Inject;
 import javax.net.ssl.HttpsURLConnection;
 
 import org.slf4j.Logger;
