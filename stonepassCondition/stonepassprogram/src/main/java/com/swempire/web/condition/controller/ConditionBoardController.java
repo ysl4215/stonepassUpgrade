@@ -37,8 +37,6 @@ public class ConditionBoardController {
 		model.addAttribute("pagination", pagination);
 		model.addAttribute("conditionlist", conditionlist);
 		
-		/* model.addAttribute("boardList", conditionservice.getBoardList()); */
-
 		return "/condition/condition";
 	}
 
@@ -54,16 +52,13 @@ public class ConditionBoardController {
 
 		return "redirect:/condition";
 	}
-	
-	@ResponseBody
-	@RequestMapping(value = "/selectOption", method = RequestMethod.POST)
-	public String listCntSelect(ConditionPaginationVO conpaging)
-			throws Exception {
-		
-			System.out.println(conpaging.getListSize());
-
-		return "";
-	}
-	
-
+	/*
+	 * @ResponseBody
+	 * @RequestMapping(value = "/selectOption", method = RequestMethod.POST) public
+	 * String listCntSelect(ConditionPaginationVO conpaging) throws Exception {
+	 * 
+	 * System.out.println(conpaging.getListSize());
+	 * 
+	 * return ""; }
+	 */
 }

@@ -100,5 +100,12 @@ public class CurlRestController {
 		//연결상태불량 기관이름 return
 		return scheduler.getErrorOrga();
 	}
+	
+	@RequestMapping(value = "/serverCurl2", method = RequestMethod.POST)
+	public ArrayList<String> serverCurlArray2(Scheduler scheduler) throws Exception {
+		
+		//연결상태불량 기관이름 return
+		return scheduler.getErrorOrga();
+	}
 
 }

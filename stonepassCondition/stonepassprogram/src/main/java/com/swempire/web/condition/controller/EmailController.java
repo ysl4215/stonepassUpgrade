@@ -21,7 +21,6 @@ public class EmailController {
 	@Inject
 	EmailService emailservice;
 	
-	
 	@RequestMapping(value= "/email", method = RequestMethod.GET)
 	public String email(Model model, @RequestParam(required = false, defaultValue = "1") int page,
 	@RequestParam(required = false, defaultValue = "1") int range, EmailPaginationVO pagination ) throws Exception {

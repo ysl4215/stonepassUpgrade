@@ -257,6 +257,7 @@ function serverCurl(e) {
 				connection: connection
 			},
 			success: function(result) {
+				location.reload();
 			},
 			error: function() {
 				alert("error");

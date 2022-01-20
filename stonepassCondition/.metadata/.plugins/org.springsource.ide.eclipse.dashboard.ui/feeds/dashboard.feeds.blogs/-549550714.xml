@@ -5,7 +5,22 @@
   <link rel="self" href="https://spring.io/blog.atom" />
   <id>http://spring.io/blog.atom</id>
   <icon>https://spring.io/favicon.ico</icon>
-  <updated>2022-01-19T15:48:00Z</updated>
+  <updated>2022-01-19T23:43:00Z</updated>
+  <entry>
+    <title>Spring Batch 5.0 M1 released</title>
+    <link rel="alternate" href="https://spring.io/blog/2022/01/19/spring-batch-5-0-m1-released" />
+    <category term="releases" label="Releases" />
+    <author>
+      <name>Mahmoud Ben Hassine</name>
+    </author>
+    <id>tag:spring.io,2022-01-19:4676</id>
+    <updated>2022-01-19T23:43:00Z</updated>
+    <content type="html">&lt;p&gt;On behalf of the team and everyone who contributed, I am pleased to announce that the first milestone release of Spring Batch 5.0 is available now from &lt;a href="https://repo.spring.io/milestone"&gt;https://repo.spring.io/milestone&lt;/a&gt;. This first milestone includes a number of major changes such as requiring Java 17+, migrating to Jakarta EE 9 APIs as well as upgrading our dependencies across the portfolio to major versions such as Spring Framework 6.0. For a complete list of changes, please check the &lt;a href="https://github.com/spring-projects/spring-batch/releases/tag/5.0.0-M1"&gt;change log&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;We also took the opportunity of this major version to remove deprecated APIs and fix some issues that require non backward compatible changes. The &lt;a href="https://github.com/spring-projects/spring-batch/wiki/Spring-Batch-5.0-Migration-Guide"&gt;migration guide&lt;/a&gt; contains more details about these changes and provides the upgrade instructions.&lt;/p&gt;
+&lt;p&gt;As we continue our work on Spring Batch 5, we look forward to your feedback on this first milestone!&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://spring.io/projects/spring-batch"&gt;Spring Batch Home&lt;/a&gt; | &lt;a href="https://github.com/spring-projects/spring-batch"&gt;Source on GitHub&lt;/a&gt;&lt;/p&gt;
+&lt;!-- rendered by Sagan Renderer Service --&gt;</content>
+  </entry>
   <entry>
     <title>Spring for GraphQL 1.0.0-M5 Released</title>
     <link rel="alternate" href="https://spring.io/blog/2022/01/19/spring-for-graphql-1-0-0-m5-released" />
@@ -602,24 +617,6 @@ type Customer {&#xD;
     <updated>2021-12-23T12:00:00Z</updated>
     <content type="html">&lt;p&gt;Hi, Spring fans! In this installment, &lt;a href="https://twitter.com/starbuxman"&gt;Josh Long (@starbuxman)&lt;/a&gt; talks to Yugabyte CTO, Apache HBase and Apache Cassandra co-founder, and distributed database legend &lt;a href="https://twitter.com/karthikr"&gt;Karthik Ranganathan&lt;/a&gt;. (Merry Christmas, if you celebrate!)&lt;/p&gt;
 &lt;iframe title="Yugabyte CEO Karthik Ranganathan" allowtransparency="true" height="150" width="100%" style="border: none; min-width: min(100%, 430px);" scrolling="no" data-name="pb-iframe-player" src="https://www.podbean.com/player-v2/?i=mckzk-11617ea-pb&amp;from=pb6admin&amp;share=1&amp;download=1&amp;rtl=0&amp;fonts=Arial&amp;skin=1&amp;font-color=&amp;btn-skin=7"&gt;&lt;/iframe&gt;
-&lt;!-- rendered by Sagan Renderer Service --&gt;</content>
-  </entry>
-  <entry>
-    <title>Spring Cloud Square 0.4.0 has been released</title>
-    <link rel="alternate" href="https://spring.io/blog/2021/12/22/spring-cloud-square-0-4-0-has-been-released" />
-    <category term="releases" label="Releases" />
-    <author>
-      <name>Olga Maciaszek-Sharma</name>
-    </author>
-    <id>tag:spring.io,2021-12-22:4657</id>
-    <updated>2021-12-22T21:02:00Z</updated>
-    <content type="html">&lt;p&gt;On behalf of the community, I am pleased to announce that the 0.4.0 release of &lt;a href="https://github.com/spring-projects-experimental/spring-cloud-square"&gt;Spring Cloud Square&lt;/a&gt; is available today. The release can be found in &lt;a href="https://repo.maven.apache.org/maven2/org/springframework/cloud/spring-cloud-square-dependencies/0.4.0/"&gt;Maven Central&lt;/a&gt;. You can check out the 0.4.0 &lt;a href="https://github.com/spring-projects-experimental/spring-cloud-square/releases/tag/v0.4.0"&gt;release notes for more information&lt;/a&gt;.&lt;/p&gt;&lt;h2&gt;&lt;a href="#notable-changes-in-0-4-0" class="anchor" name="notable-changes-in-0-4-0"&gt;&lt;/a&gt;Notable changes in 0.4.0:&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;Spring Native support adjustments for non-load-balanced use-cases (&lt;a href="https://github.com/spring-cloud-incubator/spring-cloud-square/pull/23"&gt;PR&lt;/a&gt;)&lt;/li&gt;
-  &lt;li&gt;Support for configuring different WebClient.Builder beans (not shared) for each &lt;code&gt;@RetrofitClient&lt;/code&gt; instance (&lt;a href="https://github.com/spring-cloud-incubator/spring-cloud-square/pull/30"&gt;PR&lt;/a&gt;)&lt;/li&gt;
-  &lt;li&gt;Spring Cloud Sleuth integration for OkHttpClient &lt;a href="https://github.com/spring-projects-experimental/spring-cloud-square/issues/36"&gt;#36&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;The documentation for this release can be found &lt;a href="https://spring-projects-experimental.github.io/spring-cloud-square/docs/current/reference/html/index.html"&gt;here&lt;/a&gt;.&lt;/p&gt;
 &lt;!-- rendered by Sagan Renderer Service --&gt;</content>
   </entry>
 </feed>
