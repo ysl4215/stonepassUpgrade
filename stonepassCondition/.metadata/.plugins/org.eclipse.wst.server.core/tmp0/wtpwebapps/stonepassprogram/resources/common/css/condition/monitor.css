@@ -19,3 +19,14 @@
 	font-size: 18px;
 	/* float: right; */
 }
+
+.board .form-group{
+	width: 25%;
+	margin-left: 35%;
+}
+.insertButton{
+	margin-left: 10%;
+	
+}
+
+

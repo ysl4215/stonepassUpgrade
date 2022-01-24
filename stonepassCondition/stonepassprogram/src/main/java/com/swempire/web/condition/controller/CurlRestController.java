@@ -45,11 +45,11 @@ public class CurlRestController {
 		servicetestvo.setChecked(checked);
 		servicetestvo.setBidArray(bidArray);
 
-		List<ConditionVO> list = curlService.orgaListSelect(conditionvo, servicetestvo, emailvo,pagination);
+		/* List<ConditionVO> list = */ curlService.orgaListSelect(conditionvo, servicetestvo, emailvo,pagination);
 
-		String[] arr = new String[list.size()];
+		/* String[] arr = new String[list.size()]; */
 
-		List<EmailVO> emailList = emailservice.emailListLimitSelect(pagination);
+		/* List<EmailVO> emailList = */ emailservice.emailListLimitSelect(pagination);
 
 		return curlService.getArr();
 	}

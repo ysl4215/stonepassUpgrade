@@ -6,15 +6,11 @@
 <head>
 <!-- jQuery -->
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
-
 <meta charset="UTF-8">
-
 <!-- common CSS -->
 <link rel="stylesheet" href="/resources/common/css/common.css">
 <link rel="stylesheet"
 	href="/resources/common/css/condition/monitor.css">
-<%-- <link rel="stylesheet"
-	href="<c:url value='/resources/common/css/common.css'/>"> --%>
 <!-- Bootstrap CSS -->
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
@@ -55,8 +51,16 @@ body {
 <body>
 	<nav class="navbar navbar-dark bg-dark">
 		<a class="navbar-brand" href="condition">스톤패스 연결확인 프로그램</a>
-	</nav><br>
+	</nav>
+	<br>
 	<article class="all">
+		<span class="insertButton">
+			<button type="button" class="btn btn-sm btn-primary"
+				onclick="insert()">기관 등록</button>
+
+			<button type="button" class="btn btn-sm btn-primary"
+				onclick="email()">E-mail</button>
+		</span>
 		<div class="col-md-6">
 			<label class="switch-button"> <input value="서버연결"
 				type="checkbox" onchange="serverCurl(this)" id="serverCurl"
@@ -66,7 +70,9 @@ body {
 			<div class="card-hover-shadow-2x mb-3 card">
 				<div class="card-header">연결상태불량 기관</div>
 				<div class="card-body">
-					<p class="mb-0"><div class="widget-heading" id="widget-heading"></div></p>
+					<p class="mb-0">
+					<div class="widget-heading" id="widget-heading"></div>
+					</p>
 
 				</div>
 				<div class="d-block text-right card-footer"></div>
@@ -74,15 +80,36 @@ body {
 		</div>
 		<!-- class="board" -->
 		<div class="board">
-			<div>
+			<!-- <div>
 				<button type="button" class="btn btn-sm btn-primary"
 					onclick="insert()">기관 등록</button>
 
 				<button type="button" class="btn btn-sm btn-primary"
 					onclick="email()">E-mail</button>
-			</div>
+			</div> -->
 			<br>
+			<!-- search{s} -->
+			<div class="form-group row justify-content-center">
+				<div class="w100">
+					<select class="form-control form-control-sm" name="searchType"
+						id="searchType">
+						<option value="testTitle">기관이름</option>
+						<option value="testContent">기관주소</option>
+					</select>
+				</div>
 
+				<div class="w300">
+					<input type="text"
+						<%-- value="${pagination.keyword}" --%> class="form-control form-control-sm"
+						name="keyword" id="keyword">
+				</div>
+
+				<div>
+					<button class="btn btn-sm btn-primary" name="btnSearch"
+						id="btnSearch">검색</button>
+				</div>
+			</div>
+			<!-- search{e} -->
 			<!--로딩바-->
 			<div id="loading" style="margin-left: 0px;">
 				<img src="/resources/common/img/loading.gif">
@@ -91,13 +118,20 @@ body {
 
 			<div class="table-responsive">
 				<table class="table table-striped table-sm">
-					<label>
-					<select class="dataTable-selector" id="listSize" onchange="listSize(this.options[this.selectedIndex].value);">
-							<option value="10" id="option1" <c:if test="${pagination.getListSize() == 10 }">selected="selected"</c:if>>10</option>
-							<option value="30" id="option2" <c:if test="${pagination.getListSize() == 30 }">selected="selected"</c:if>>30</option>
-							<option value="50" id="option3" <c:if test="${pagination.getListSize() == 50 }">selected="selected"</c:if>>50</option>
-							<option value="100" id="option4" <c:if test="${pagination.getListSize() == 100 }">selected="selected"</c:if>>100</option>
-							</select> entries per page</label>
+					<label> <select class="dataTable-selector" id="listSize"
+						onchange="listSize(this.options[this.selectedIndex].value);">
+							<option value="10" id="option1"
+								<c:if test="${pagination.getListSize() == 10 }">selected="selected"</c:if>>10</option>
+							<option value="30" id="option2"
+								<c:if test="${pagination.getListSize() == 30 }">selected="selected"</c:if>>30</option>
+							<option value="50" id="option3"
+								<c:if test="${pagination.getListSize() == 50 }">selected="selected"</c:if>>50</option>
+							<option value="100" id="option4"
+								<c:if test="${pagination.getListSize() == 100 }">selected="selected"</c:if>>100</option>
+					</select> entries per page
+					</label>
+
+
 					<colgroup>
 						<col style="width: 5%;" />
 						<col style="width: 20%;" />
@@ -165,7 +199,9 @@ body {
 					<ul class="pagination">
 						<c:if test="${pagination.prev}">
 							<li class="page-item"><a class="page-link" href="#"
-								onClick="fn_prev('${pagination.page}', '${pagination.range}', '${pagination.rangeSize}','${pagination.listSize}')">
+								onClick="fn_prev('${pagination.page}', '${pagination.range}',
+								 '${pagination.rangeSize}','${pagination.listSize}',
+								 '${search.searchType}', '${search.keyword}')">
 									Previous</a></li>
 						</c:if>
 
@@ -174,14 +210,18 @@ body {
 							<li
 								class="page-item <c:out value="${pagination.page == idx ? 'active' : ''}"/> ">
 								<a class="page-link" href="#"
-								onClick="fn_pagination('${idx}', '${pagination.range}', '${pagination.rangeSize}', '${pagination.listSize}')">
+								onClick="fn_pagination('${idx}', '${pagination.range}',
+								 '${pagination.rangeSize}', '${pagination.listSize}',
+								 '${search.searchType}', '${search.keyword}')">
 									${idx} </a>
 							</li>
 						</c:forEach>
+
 						<c:if test="${pagination.next}">
 							<li class="page-item"><a class="page-link" href="#"
 								onClick="fn_next('${pagination.range}', 
-				'${pagination.range}', '${pagination.rangeSize}','${pagination.listSize}')">Next</a></li>
+				'${pagination.range}', '${pagination.rangeSize}','${pagination.listSize}',
+				'${search.searchType}', '${search.keyword}')">Next</a></li>
 						</c:if>
 					</ul>
 					<!-- pagination{e} -->

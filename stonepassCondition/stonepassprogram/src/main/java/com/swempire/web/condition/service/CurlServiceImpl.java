@@ -60,10 +60,6 @@ public class CurlServiceImpl implements CurlService {
 			for (int i = 0; i < list.size(); i++) {
 				list.get(i).getOrga_url();
 				curl.get(list.get(i).getOrga_url(), null);
-
-				
-				
-				
 				
 				int curlCode = curl.getCurlCode();
 				int errorNum = curl.getErrorNum();
@@ -77,10 +73,6 @@ public class CurlServiceImpl implements CurlService {
 					emaildao.emailErrorOrganameSelect(emailvo);
 
 					//!!!!emailvo로 에러난 기관타이틀명을 가져와야함
-					
-					
-					
-					
 					String[] errorOrgaName = { emaildao.emailErrorOrganameSelect(emailvo).getOrga_name() };
 					// email수신자 설정
 					for (int j = 0; j < emailList.size(); j++) {

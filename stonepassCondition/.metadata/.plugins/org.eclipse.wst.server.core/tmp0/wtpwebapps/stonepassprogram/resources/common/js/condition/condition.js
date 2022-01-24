@@ -187,35 +187,52 @@ function Chk() {
 }
 
 //이전 버튼 이벤트
-function fn_prev(page, range, rangeSize,listSize) {
+function fn_prev(page, range, rangeSize, listSize, searchType, keyword) {
 	var page = ((range - 2) * rangeSize) + 1;
 	var range = range - 1;
 	var url = "/condition";
 	url = url + "?page=" + page;
 	url = url + "&range=" + range;
 	url = url + "&listSize=" + listSize;
+	url = url + "&searchType=" + searchType;
+	url = url + "&keyword=" + keyword;
 	location.href = url;
 }
 
 //페이지 번호 클릭
-function fn_pagination(page, range, rangeSize,listSize, searchType, keyword) {
+function fn_pagination(page, range, rangeSize, listSize, searchType, keyword) {
 	var url = "/condition";
 	url = url + "?page=" + page;
 	url = url + "&range=" + range;
 	url = url + "&listSize=" + listSize;
+	url = url + "&searchType=" + searchType;
+	url = url + "&keyword=" + keyword;
 	location.href = url;
 }
 
 //다음 버튼 이벤트
-function fn_next(page, range, rangeSize, listSize) {
+function fn_next(page, range, rangeSize, listSize, searchType, keyword) {
 	var page = parseInt((range * rangeSize)) + 1;
 	var range = parseInt(range) + 1;
 	var url = "/condition";
 	url = url + "?page=" + page;
 	url = url + "&range=" + range;
 	url = url + "&listSize=" + listSize;
+	url = url + "&searchType=" + searchType;
+	url = url + "&keyword=" + keyword;
 	location.href = url;
 }
+
+//검색
+$(document).on('click', '#btnSearch', function(e) {
+	e.preventDefault();
+	var url = "/condition";
+	url = url + "?searchType=" + $('#searchType').val();
+	url = url + "&keyword=" + $('#keyword').val();
+	url = url + "&listSize=" + $('#listSize').val();
+	location.href = url;
+	console.log(url);
+});
 
 /* 로딩화면 */
 //$('#loading').show();
@@ -266,19 +283,20 @@ function serverCurl(e) {
 	}
 }
 
-function listSize(testId){
-	
+function listSize(testId) {
+
 	var startPage = testId;
 	var listSize = $("#listSize option:selected").val();
-		
-	  if(listSize == 10){
-		  var url="/condition?startPage="+startPage+"&listSize="+listSize
-	  }else if(listSize == 30){
-		  var url="/condition?startPage="+startPage+"&listSize="+listSize
-	  }else if(listSize == 50){
-	      var url="/condition?startPage="+startPage+"&listSize="+listSize
-	  }else if(listSize == 100){
-	      var url="/condition?startPage="+startPage+"&listSize="+listSize
-	  }
-	  location.href = url;
+
+	if (listSize == 10) {
+		var url = "/condition?startPage=" + startPage + "&listSize=" + listSize
+	} else if (listSize == 30) {
+		var url = "/condition?startPage=" + startPage + "&listSize=" + listSize
+	} else if (listSize == 50) {
+		var url = "/condition?startPage=" + startPage + "&listSize=" + listSize
+	} else if (listSize == 100) {
+		var url = "/condition?startPage=" + startPage + "&listSize=" + listSize
+	}
+	location.href = url;
 }
+

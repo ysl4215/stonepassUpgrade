@@ -32,14 +32,4 @@ public class ConditionVO {
 	public void setBidArray(int[] bidArray) {
 		this.bidArray = bidArray;
 	}
-
-	
-	/*
-	 * @Override public String toString() { return "ConditionVO [bid=" + bid +
-	 * ", bidArray=" + Arrays.toString(bidArray) + ", orga_name=" + orga_name +
-	 * ", orga_url=" + orga_url + "]"; }
-	 */
-
-	
-
 }

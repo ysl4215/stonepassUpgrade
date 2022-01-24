@@ -1,19 +1,16 @@
 package com.swempire.web.condition.controller;
 
-import java.util.List;
-
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.swempire.web.condition.VO.ConditionPaginationVO;
 import com.swempire.web.condition.VO.ConditionVO;
+import com.swempire.web.condition.VO.Search;
 import com.swempire.web.condition.service.ConditionService;
 
 @Controller
@@ -25,17 +22,27 @@ public class ConditionBoardController {
 	/* 메인화면 */
 	@RequestMapping(value = "/condition", method = RequestMethod.GET)
 	public String condition(@RequestParam(required = false, defaultValue = "1") int page,
-			@RequestParam(required = false, defaultValue = "1") int range, ConditionPaginationVO pagination,Model model, @RequestParam(required = false, defaultValue = "x") String arr)
-			throws Exception {
-		//전체 게시글 개수
-		int listCnt = conditionservice.conditionListCnt();
+			@RequestParam(required = false, defaultValue = "1") int range, Model model,
+			@RequestParam(required = false, defaultValue = "testTitle") String searchType,
+			@RequestParam(required = false) String keyword, @ModelAttribute("search") Search search) throws Exception {
 		
-		pagination.pageInfo(page, range, listCnt);
-		
-		List<ConditionVO> conditionlist = conditionservice.conditionListLimitSelect(pagination);
-		
-		model.addAttribute("pagination", pagination);
-		model.addAttribute("conditionlist", conditionlist);
+		// 검색
+		model.addAttribute("search", search);
+		search.setSearchType(searchType);
+		search.setKeyword(keyword);
+
+		// 전체 게시글 개수를 얻어와 listCnt에 저장
+		int listCnt = conditionservice.conditionListCnt(search);
+System.out.println("keyword == "+keyword);
+System.out.println("search == "+search.toString());
+		// 검색
+		search.pageInfo(page, range, listCnt);
+
+		// 페이징
+		model.addAttribute("pagination", search);
+		// 게시글 화면 출력
+		model.addAttribute("conditionlist", conditionservice.conditionListLimitSelect(search));
+		System.out.println(listCnt);
 		
 		return "/condition/condition";
 	}
@@ -52,13 +59,4 @@ public class ConditionBoardController {
 
 		return "redirect:/condition";
 	}
-	/*
-	 * @ResponseBody
-	 * @RequestMapping(value = "/selectOption", method = RequestMethod.POST) public
-	 * String listCntSelect(ConditionPaginationVO conpaging) throws Exception {
-	 * 
-	 * System.out.println(conpaging.getListSize());
-	 * 
-	 * return ""; }
-	 */
 }

@@ -6,15 +6,38 @@
 
 	<select id="getBoardList"
 		resultType="com.swempire.web.condition.VO.ConditionVO">
-		SELECT * FROM condition_board
+		SELECT * FROM condition_board 
 	</select>
 	
 	<select id="conditionListLimitSelect" resultType="com.swempire.web.condition.VO.ConditionVO">
-		select * from condition_board LIMIT #{startList}, #{listSize}
+		select * from condition_board 
+		
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<if test="searchType=='testTitle' and keyword != null and keyword != '' ">
+				AND orga_name like CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="searchType=='testContent' and keyword != null and keyword != '' ">
+				AND orga_url like CONCAT('%', #{keyword}, '%')
+			</if>
+		</trim> 
+		LIMIT #{startList}, #{listSize}
 	</select>
 
 	<select id="conditionListCnt" resultType="int">
-		SELECT count(*) as listCnt FROM condition_board
+		select count(*) as listCnt FROM condition_board
+		
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<if test="keyword != null and keyword != '' ">
+				<if test="searchType=='testTitle'">
+					AND orga_name like CONCAT('%', #{keyword}, '%')
+				</if>
+				<if test="searchType=='testContent'">
+					AND orga_url like CONCAT('%', #{keyword}, '%')
+				</if>
+			</if>
+		</trim>
+		
+	
 	</select>
 
 	<insert id="insertBoard" parameterType="com.swempire.web.condition.VO.ConditionVO">
@@ -29,7 +52,8 @@
 	SELECT orga_url,bid FROM condition_board where bid IN
 	<foreach collection="bidArray" item="arr" open="(" close=")" separator=",">
 	#{arr}
-	</foreach>	
+	</foreach>
+	
 	</select>
 	
 	<select id="contentBoard" resultType="com.swempire.web.condition.VO.ConditionVO" parameterType="com.swempire.web.condition.VO.ConditionVO">

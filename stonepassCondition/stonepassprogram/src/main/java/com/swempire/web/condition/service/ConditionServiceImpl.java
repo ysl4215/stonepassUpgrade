@@ -7,10 +7,8 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 import com.swempire.web.condition.DAO.ConditionDAO;
-import com.swempire.web.condition.VO.ConditionPaginationVO;
 import com.swempire.web.condition.VO.ConditionVO;
-import com.swempire.web.condition.VO.EmailPaginationVO;
-import com.swempire.web.condition.VO.EmailVO;
+import com.swempire.web.condition.VO.Search;
 
 @Service
 public class ConditionServiceImpl implements ConditionService{
@@ -23,13 +21,13 @@ public class ConditionServiceImpl implements ConditionService{
 	
 	
 	@Override
-	public List<ConditionVO> conditionListLimitSelect(ConditionPaginationVO pagination) throws Exception {
-		return conditionDAO.conditionListLimitSelect(pagination);
+	public List<ConditionVO> conditionListLimitSelect(Search search) throws Exception {
+		return conditionDAO.conditionListLimitSelect(search);
 	}
 
 	@Override
-	public int conditionListCnt() throws Exception {
-		return conditionDAO.conditionListCnt();
+	public int conditionListCnt(Search search) throws Exception {
+		return conditionDAO.conditionListCnt(search);
 	}
 
 	@Override

@@ -47,7 +47,7 @@ public class Scheduler {
 	}
 
 	private ThreadPoolTaskScheduler scheduler;
-	private String cron = "*/10 * * * * *";
+	private String cron = "*/30 * * * * *";
 
 	
 	public void startScheduler() {
